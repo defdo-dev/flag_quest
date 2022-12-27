@@ -17,7 +17,14 @@ defmodule FlagQuestWeb.Router do
   scope "/", FlagQuestWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", FlagGameLive, :new_game
+
+    live "/flags", FlagGameLive.Index, :index
+    live "/flags/new", FlagGameLive.Index, :new
+    live "/flags/:id/edit", FlagGameLive.Index, :edit
+
+    live "/flags/:id", FlagGameLive.Show, :show
+    live "/flags/:id/show/edit", FlagGameLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
