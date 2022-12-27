@@ -34,7 +34,7 @@ defmodule FlagQuestWeb.FlagGameLive do
         <.button phx-click="new_guess">Try another</.button>
       <% else %>
         <.simple_form :let={f} for={:guess_flag} phx-submit="guess">
-          <.input field={{f, :guess}} label="What is the country flag?" autocomplete="off"/>
+          <.input field={{f, :guess}} label="Whose flag is it?" autocomplete="off"/>
           <:actions>
             <.button>Guess the flag</.button>
           </:actions>
