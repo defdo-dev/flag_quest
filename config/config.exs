@@ -8,7 +8,8 @@
 import Config
 
 config :flag_quest,
-  ecto_repos: [FlagQuest.Repo]
+  ecto_repos: [FlagQuest.Repo],
+  generators: [binary_id: true]
 
 # Configures the endpoint
 config :flag_quest, FlagQuestWeb.Endpoint,
@@ -19,6 +20,12 @@ config :flag_quest, FlagQuestWeb.Endpoint,
   ],
   pubsub_server: FlagQuest.PubSub,
   live_view: [signing_salt: "5eDt3SVr"]
+
+config :flag_quest, FlagQuest.Repo,
+  migration_source: "schema_migrations_flag_quest",
+  migration_timestamps: [type: :timestamptz],
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
 
 # Configures the mailer
 #

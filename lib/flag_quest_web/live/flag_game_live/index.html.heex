@@ -1,0 +1,40 @@
+<.header>
+  Listing Flags
+  <:actions>
+    <.link patch={~p"/flags/new"}>
+      <.button>New Flag</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="flags" rows={@flags} row_click={&JS.navigate(~p"/flags/#{&1}")}>
+  <:col :let={flag} label="Image"><image src={flag.image} alt={flag.name} class="h-12" /></:col>
+  <:col :let={flag} label="Name"><%= flag.name %></:col>
+  <:action :let={flag}>
+    <div class="sr-only">
+      <.link navigate={~p"/flags/#{flag}"}>Show</.link>
+    </div>
+    <.link patch={~p"/flags/#{flag}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={flag}>
+    <.link phx-click={JS.push("delete", value: %{id: flag.id})} data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal
+  :if={@live_action in [:new, :edit]}
+  id="flag-modal"
+  show
+  on_cancel={JS.navigate(~p"/flags")}
+>
+  <.live_component
+    module={FlagQuestWeb.FlagGameLive.FormComponent}
+    id={@flag.id || :new}
+    title={@page_title}
+    action={@live_action}
+    flag={@flag}
+    navigate={~p"/flags"}
+  />
+</.modal>

@@ -12,7 +12,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: "#FD4F00",
+        primary: "#F9BC02",
+        success: "#086402",
+        error: "#FD4F00",
+        info: "#0076FD"
       }
     },
   },
